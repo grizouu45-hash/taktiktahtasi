@@ -1,0 +1,195 @@
+/* Genel Ayarlar */
+body {
+    background-color: #121212;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    overflow: hidden;
+}
+
+.container { display: flex; height: 100vh; }
+
+.sidebar {
+    width: 300px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-right: 2px solid #333;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+}
+
+.input-group { display: flex; flex-direction: column; gap: 5px; }
+
+input, select, button {
+    padding: 10px;
+    background: #333;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover { background: #444; }
+.clear-btn { background: #8b0000; margin-top: 10px; }
+
+.main-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+
+#pitch-container {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    background-color: #2e7d32;
+    border: 5px solid white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+#drawingCanvas {
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 5;
+    cursor: crosshair;
+}
+
+/* Saha Çizgileri */
+.pitch { position: absolute; width: 100%; height: 100%; pointer-events: none; }
+.pitch-lines div { border: 2px solid rgba(255,255,255,0.5); position: absolute; }
+.center-line { height: 100%; left: 50%; top: 0; }
+.center-circle {
+    width: 120px; height: 120px; border-radius: 50%;
+    left: 50%; top: 50%; transform: translate(-50%, -50%);
+}
+.penalty-area.left { width: 120px; height: 240px; left: 0; top: 50%; transform: translateY(-50%); }
+.penalty-area.right { width: 120px; height: 240px; right: 0; top: 50%; transform: translateY(-50%); }
+
+/* Filigran Stil */
+.watermark {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Oyuncu Stili */
+.player {
+    width: 35px;
+    height: 35px;
+    background-color: #ffde03;
+    color: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    position: absolute;
+    cursor: move;
+    z-index: 10;
+    border: 2px solid #000;
+    transition: transform 0.1s;
+}
+
+.player:active { transform: scale(1.1); }
+
+/* Oyuncu İsim Etiketi */
+.player-name {
+    position: absolute;
+    top: 38px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.bench {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    min-height: 80px;
+    padding: 15px;
+    background: #000;
+    border-radius: 8px;
+    border: 1px dashed #444;
+}
+
+.bench .player { 
+    position: relative !important; 
+    left: 0 !important; 
+    top: 0 !important; 
+}
+
+.bench .player-name { display: none; } /* Yedekteyken isim gizli olsun */
+
+/* Sosyal Medya Bölümü */
+.social-container {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    animation: fadeIn 1s ease-in;
+}
+
+.social-icons {
+    display: flex;
+    gap: 25px;
+    font-size: 28px;
+}
+
+.social-icons a {
+    color: #888;
+    transition: all 0.3s ease;
+}
+
+/* İkon Renkleri (Hover durumunda kendi renkleri) */
+.social-icons a:hover .fa-instagram { color: #E1306C; transform: scale(1.2); }
+.social-icons a:hover .fa-facebook { color: #1877F2; transform: scale(1.2); }
+.social-icons a:hover .fa-tiktok { color: #00f2ea; transform: scale(1.2); }
+.social-icons a:hover .fa-youtube { color: #FF0000; transform: scale(1.2); }
+
+.handle-text {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #fff;
+    opacity: 0.9;
+}
+
+.follow-btn {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+    text-decoration: none;
+    padding: 10px 35px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    text-transform: uppercase;
+}
+
+.follow-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(225, 48, 108, 0.4);
+    filter: brightness(1.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

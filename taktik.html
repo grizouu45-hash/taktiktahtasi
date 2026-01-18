@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Yarım Vole Taktik Tahtası</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="sidebar">
+        <h2>Kontrol Paneli</h2>
+        
+        <div class="input-group">
+            <label>Takım Adı:</label>
+            <input type="text" id="teamNameInput" placeholder="Takım Adı Girin" oninput="updateTeamName()">
+        </div>
+
+        <div class="input-group">
+            <label>Formasyon:</label>
+            <select id="formationSelect" onchange="applyFormation()">
+                <option value="custom">Serbest Diziliş</option>
+                <option value="442">4-4-2</option>
+                <option value="433">4-3-3</option>
+                <option value="4231">4-2-3-1</option>
+                <option value="352">3-5-2</option>
+            </select>
+        </div>
+
+        <div class="tools">
+            <label>Çizim Araçları & Renk:</label>
+            <input type="color" id="colorPicker" value="#ffffff" style="width: 100%; height: 40px; margin-bottom: 10px;">
+            <button onclick="setTool('move')">🖐️ Seç/Taşı</button>
+            <button onclick="setTool('line')">⎯ Çizgi</button>
+            <button onclick="setTool('arrow')">➔ Ok</button>
+            <button onclick="setTool('dashed')">--- Kesikli</button>
+            <button onclick="setTool('circle')">◯ Daire</button>
+            <div style="display: flex; gap: 5px; margin-top: 10px;">
+                <button onclick="undo()" style="flex: 1; background: #555;">↩ Geri Al</button>
+                 <button class="clear-btn" onclick="clearCanvas()" style="flex: 1; margin-top: 0;">🗑️ Temizle</button>
+            </div>
+        </div>
+
+        <div class="bench-section">
+            <label>Yedekler (Düzeltmek için çift tıkla):</label>
+            <div id="bench" class="bench"></div>
+            <button onclick="addPlayerToBench()">+ Oyuncu Ekle</button>
+        </div>
+    </div>
+
+    <div class="main-area">
+        <h1 id="teamNameDisplay">BENİM TAKIMIM</h1>
+        <div id="pitch-container">
+            <canvas id="drawingCanvas"></canvas>
+            
+            <div class="pitch" id="pitch">
+                <div class="pitch-lines">
+                    <div class="center-circle"></div>
+                    <div class="center-line"></div>
+                    <div class="penalty-area left"></div>
+                    <div class="penalty-area right"></div>
+                </div>
+                <!-- Filigran buraya eklendi -->
+                <div class="watermark">@yarimvolee</div>
+            </div>
+        </div>
+        <p style="color: #888; margin-top: 10px; font-size: 12px;">* Oyuncu ismini ve numarasını değiştirmek için oyuncuya çift tıklayın.</p>
+        <div class="social-container">
+            <div class="social-icons">
+                <a href="https://www.instagram.com/yarimvolee" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/share/16vNH1Zobe/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.tiktok.com/@yarimvolee" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.youtube.com/@yarimvolee" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+            <div class="handle-text">@yarimvolee</div>
+            <!-- Takip et butonu genelde bir Linktree veya ana profil linkine yönlendirir -->
+            <a href="https://www.instagram.com/yarimvolee" target="_blank" class="follow-btn">Takip Et</a>
+        </div>
+    </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
